@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { BsChevronLeft } from 'react-icons/bs'
 import './BlogDetails.css'
+import { BlogContext } from '../../App';
 const BlogDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const [blog, setBlog] = useState({});
-    useEffect(() => {
-        fetch(`https://retro-tech-talks.herokuapp.com/getBlog/${id}`)
-            .then(res => res.json())
-            .then(data => setBlog(data))
-    }, [])
-
+    /*   const [blog, setBlog] = useState({});
+      useEffect(() => {
+          fetch(`https://retro-tech-talks.herokuapp.com/getBlog/${id}`)
+              .then(res => res.json())
+              .then(data => setBlog(data))
+      }, [id]) */
+    const [blogs] = useContext(BlogContext)
+    const blog = blogs.find(blog => blog._id == id);
+    console.log(blog);
     return (
         <>
             <div className='header-gradient' />

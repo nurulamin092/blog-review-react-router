@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Home.css'
 import Blog from '../Blog/Blog'
+import { BlogContext } from '../../App';
 const Home = () => {
-    const [blogs, setBlogs] = useState([]);
+    const [blogs, setBlogs] = useContext(BlogContext)
     useEffect(() => {
-        fetch('https://retro-tech-talks.herokuapp.com/blogs')
+        // fetch('https://retro-tech-talks.herokuapp.com/blogs')
+        fetch('data.json')
             .then(res => res.json())
             .then(data => setBlogs(data));
     }, [])
